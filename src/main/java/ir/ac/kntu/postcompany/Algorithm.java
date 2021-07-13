@@ -5,8 +5,8 @@ import java.util.Collections;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class Algorithm {
-    private Double getT( ArrayList<Double> boxes) {
-        double ave = boxes.stream().mapToDouble(n -> n).sum() /boxes.size();
+    private Double getT( ArrayList<Double> boxes,ArrayList<Double> trucks) {
+        double ave = boxes.stream().mapToDouble(n -> n).sum() /trucks.size();
         AtomicReference<Double> max = new AtomicReference<>(0d);
         boxes.forEach((n)->{
             if ( max.get() <  n) {
@@ -20,7 +20,7 @@ public class Algorithm {
 
     public void packTrucks(ArrayList<Double> trucks, ArrayList<Double> boxes){
         if (trucks == null || boxes == null) return;
-        Double t = getT(boxes);
+        Double t = getT(boxes,trucks);
         boxes.sort(Double::compareTo);
         int j = 0;
         Collections.reverse(boxes);
